@@ -1,11 +1,15 @@
 package edu.augustana.csc490.individualgame;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
+
+import static android.view.View.OnClickListener;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -17,12 +21,26 @@ public class MainActivity extends ActionBarActivity {
 
         Button playButton = (Button) findViewById(R.id.playButton);
         playButton.setOnClickListener(playButtonListener);
+
+        Button howToButton = (Button) findViewById(R.id.howToButton);
+        howToButton.setOnClickListener(howToButtonListener);
+
     }
     //playButtonListener
-    public DialogInterface.OnClickListener playButtonListener = new DialogInterface.OnClickListener() {
+    OnClickListener playButtonListener = new OnClickListener() {
         @Override
-        public void onClick(DialogInterface dialog, int which) {
+        public void onClick(View v) {
+            Intent playIntent = new Intent(this, GameOptionsActivity.class);
+            startActivity(playIntent);
+        }
+    };
 
+    //howToButton listener
+    OnClickListener howToButtonListener = new OnClickListener(){
+        @Override
+        public void onClick(View v) {
+            Intent howToIntent = new Intent(this, HowToActivity.class);
+            startActivity(howToIntent);
         }
     };
 
