@@ -18,11 +18,11 @@ public class MainActivity extends ActionBarActivity {
         Button playButton = (Button) findViewById(R.id.playButton);
         playButton.setOnClickListener(playButtonListener);
     }
-
+    //playButtonListener
     public DialogInterface.OnClickListener playButtonListener = new DialogInterface.OnClickListener() {
         @Override
         public void onClick(DialogInterface dialog, int which) {
-            
+
         }
     };
 
