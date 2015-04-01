@@ -30,7 +30,7 @@ public class MainActivity extends ActionBarActivity {
     OnClickListener playButtonListener = new OnClickListener() {
         @Override
         public void onClick(View v) {
-            Intent playIntent = new Intent(this, GameOptionsActivity.class);
+            Intent playIntent = new Intent(MainActivity.this, GameOptionsActivity.class);
             startActivity(playIntent);
         }
     };
@@ -39,7 +39,7 @@ public class MainActivity extends ActionBarActivity {
     OnClickListener howToButtonListener = new OnClickListener(){
         @Override
         public void onClick(View v) {
-            Intent howToIntent = new Intent(this, HowToActivity.class);
+            Intent howToIntent = new Intent(MainActivity.this, HowToActivity.class);
             startActivity(howToIntent);
         }
     };

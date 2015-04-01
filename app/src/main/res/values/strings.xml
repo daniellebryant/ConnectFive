@@ -8,4 +8,17 @@
     <string name="playButtonText">Play!</string>
     <string name="howToButtonText">How To Play</string>
     <string name="title_activity_game_board">GameBoardActivity</string>
+    <string name="player1Text">Player One:</string>
+    <string name="player2Text">Player Two:</string>
+    <string name="objectiveText">Objective:</string>
+    <string name="howToWinText">How to Win:</string>
+    <string name="howToPlayText">How to Play:</string>
+    <string name="rulesText">Rules:</string>
+    <string-array name="color_list">
+        <item>Red</item>
+        <item>Blue</item>
+        <item>Purple</item>
+        <item>Green</item>
+        <item>Yellow</item>
+    </string-array>
 </resources>

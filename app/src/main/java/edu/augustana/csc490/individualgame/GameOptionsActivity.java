@@ -1,9 +1,15 @@
 package edu.augustana.csc490.individualgame;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.Spinner;
+import static android.view.View.OnClickListener;
 
 
 public class GameOptionsActivity extends ActionBarActivity {
@@ -12,7 +18,35 @@ public class GameOptionsActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_options);
+
+        //Assign listener to play button
+        Button playButton = (Button) findViewById(R.id.playButton);
+        playButton.setOnClickListener(playButtonListener);
+
+        //Assign player spinners
+        Spinner player1Spinner = (Spinner) findViewById(R.id.player1Spinner);
+        Spinner player2Spinner = (Spinner) findViewById(R.id.player2Spinner);
+
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.color_list,
+                android.R.layout.simple_spinner_dropdown_item);
+
+       adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        player1Spinner.setAdapter(adapter);
+        player2Spinner.setAdapter(adapter);
+
+
+
     }
+
+    //playButtonListener
+    OnClickListener playButtonListener = new OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent playIntent = new Intent(GameOptionsActivity.this, GameBoardActivity.class);
+            startActivity(playIntent);
+        }
+    };
 
 
     @Override
