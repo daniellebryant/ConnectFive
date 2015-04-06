@@ -3,7 +3,9 @@
     android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity">
+    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity"
+    android:background="#ffcecece">
+
 
     <Button
         android:layout_width="wrap_content"
@@ -13,7 +15,9 @@
         android:layout_marginBottom="73dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:clickable="true" />
+        android:clickable="true"
+        android:background="#ff78dbff"
+        android:textColor="#ffffffff" />
 
     <Button
         android:layout_width="wrap_content"
@@ -22,6 +26,38 @@
         android:id="@+id/howToButton"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:clickable="true" />
+        android:clickable="true"
+        android:background="#ff78dbff"
+        android:textColor="#ffffffff" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/rowImageView"
+        android:src="@mipmap/row"
+        android:layout_above="@+id/playButton"
+        android:layout_alignRight="@+id/howToButton"
+        android:layout_alignEnd="@+id/howToButton"
+        android:layout_marginBottom="48dp" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/inAImageView"
+        android:src="@mipmap/ina"
+        android:layout_above="@+id/rowImageView"
+        android:layout_alignRight="@+id/rowImageView"
+        android:layout_alignEnd="@+id/rowImageView"
+        android:layout_marginBottom="42dp" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/fiveImageView"
+        android:src="@mipmap/five"
+        android:layout_marginBottom="42dp"
+        android:layout_above="@+id/inAImageView"
+        android:layout_alignLeft="@+id/rowImageView"
+        android:layout_alignStart="@+id/rowImageView" />
 
 </RelativeLayout>

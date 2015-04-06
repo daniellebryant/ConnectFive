@@ -9,7 +9,8 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name=".MainActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -17,7 +18,8 @@
         </activity>
         <activity
             android:name=".HowToActivity"
-            android:label="@string/title_activity_how_to" >
+            android:label="@string/title_activity_how_to"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.HowTo" />
                 <category android:name="android.intent.category.OPENABLE" />
@@ -25,7 +27,8 @@
         </activity>
         <activity
             android:name=".GameOptionsActivity"
-            android:label="@string/title_activity_game_options" >
+            android:label="@string/title_activity_game_options"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.GameOptions" />
                 <category android:name="android.intent.category.OPENABLE" />
@@ -33,7 +36,8 @@
         </activity>
         <activity
             android:name=".GameBoardActivity"
-            android:label="@string/title_activity_game_board" >
+            android:label="@string/title_activity_game_board"
+            android:screenOrientation="portrait">
         </activity>
     </application>
 
