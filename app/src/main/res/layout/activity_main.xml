@@ -30,34 +30,34 @@
         android:background="#ff78dbff"
         android:textColor="#ffffffff" />
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/rowImageView"
-        android:src="@mipmap/row"
-        android:layout_above="@+id/playButton"
-        android:layout_alignRight="@+id/howToButton"
-        android:layout_alignEnd="@+id/howToButton"
-        android:layout_marginBottom="48dp" />
+     <ImageView
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:id="@+id/rowImageView"
+         android:src="@mipmap/row"
+         android:layout_above="@+id/playButton"
+         android:layout_alignRight="@+id/howToButton"
+         android:layout_alignEnd="@+id/howToButton"
+         android:layout_marginBottom="48dp" />
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/inAImageView"
-        android:src="@mipmap/ina"
-        android:layout_above="@+id/rowImageView"
-        android:layout_alignRight="@+id/rowImageView"
-        android:layout_alignEnd="@+id/rowImageView"
-        android:layout_marginBottom="42dp" />
+     <ImageView
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:id="@+id/inAImageView"
+         android:src="@mipmap/ina"
+         android:layout_above="@+id/rowImageView"
+         android:layout_alignRight="@+id/rowImageView"
+         android:layout_alignEnd="@+id/rowImageView"
+         android:layout_marginBottom="42dp" />
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/fiveImageView"
-        android:src="@mipmap/five"
-        android:layout_marginBottom="42dp"
-        android:layout_above="@+id/inAImageView"
-        android:layout_alignLeft="@+id/rowImageView"
-        android:layout_alignStart="@+id/rowImageView" />
+     <ImageView
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:id="@+id/fiveImageView"
+         android:src="@mipmap/five"
+         android:layout_marginBottom="42dp"
+         android:layout_above="@+id/inAImageView"
+         android:layout_alignLeft="@+id/rowImageView"
+         android:layout_alignStart="@+id/rowImageView" />
 
 </RelativeLayout>
