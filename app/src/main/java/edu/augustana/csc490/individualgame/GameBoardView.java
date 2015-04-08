@@ -16,6 +16,8 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 public class GameBoardView extends SurfaceView implements SurfaceHolder.Callback{
     private static final String TAG = "GameStarter";
 
@@ -25,8 +27,6 @@ public class GameBoardView extends SurfaceView implements SurfaceHolder.Callback
     private boolean isGameOver = true;
     private boolean player1Turn = true;
 
-    private int x;
-    private int y;
     private int radius = 30;
     private int screenWidth;
     private int screenHeight;
@@ -52,7 +52,9 @@ public class GameBoardView extends SurfaceView implements SurfaceHolder.Callback
     private GamePiece innerLowerRight;
     private GamePiece innerLowerMiddle;
 
-    private Toast toast;
+    private ArrayList<GamePiece> gamePieceList = new ArrayList<GamePiece>();
+
+    private int player = 0;
 
     private int player1OuterCorners;
     private int player1InnerCorners;
@@ -69,6 +71,7 @@ public class GameBoardView extends SurfaceView implements SurfaceHolder.Callback
     private int player2RightDiagonal;
 
 
+
     public GameBoardView(Context context, AttributeSet atts){
         super(context, atts);
         gameBoardActivity = (Activity) context;
@@ -79,28 +82,6 @@ public class GameBoardView extends SurfaceView implements SurfaceHolder.Callback
         myPaint.setColor(Color.BLACK);
         backgroundPaint = new Paint();
         backgroundPaint.setColor(Color.GRAY);
-
-        upperLeft = new GamePiece(0, 0, radius, 0);
-        upperMiddle = new GamePiece(getWidth()/2, 0, radius, 0);
-        upperRight = new GamePiece(getWidth(), 0, radius, 0);
-        middleLeft = new GamePiece(0, getHeight()/2, radius, 0);
-        middleRight = new GamePiece(0, getHeight()/2, radius, 0);
-        center = new GamePiece(getWidth()/2, getHeight()/2, radius, 0);
-        innerLowerRight = new GamePiece((getWidth()-(getWidth()/4)), getHeight()/2 + getHeight()/4,
-                radius, 0);
-        lowerLeft = new GamePiece(getWidth(), getHeight(), radius, 0);
-        lowerMiddle = new GamePiece(getWidth()/2, getHeight(), radius, 0);
-        lowerRight = new GamePiece(0, getHeight(), radius, 0);
-        innerTopLeft = new GamePiece((getWidth()/4), getHeight()/4, radius, 0);
-        innerTopMiddle = new GamePiece((getWidth()/2), getHeight()/4, radius, 0);
-        innerTopRight = new GamePiece((getWidth() - (getWidth()/4)), getHeight()/4, radius, 0);
-        innerLowerRight = new GamePiece((getWidth() - (getWidth()/4)), getHeight()/4, radius, 0);
-        innerMiddleLeft = new GamePiece(getWidth()/2/2, getHeight()/2, radius, 0);
-        innerMiddleRight = new GamePiece(getWidth() - (getWidth()/4), getHeight()/2, radius, 0);
-        innerLowerLeft = new GamePiece((getWidth()/4), getHeight()/2 + getHeight()/4, radius, 0);
-        innerLowerMiddle = new GamePiece((getWidth()/2), getHeight()/2 + getHeight()/4, radius, 0);
-        innerLowerRight = new GamePiece((getWidth()-(getWidth()/4)), getHeight()/2 + getHeight()/4, radius,0);
-
 
     }
 
@@ -117,8 +98,40 @@ public class GameBoardView extends SurfaceView implements SurfaceHolder.Callback
     }
 
     public void startNewGame(){
-        this.x = 25;
-        this.y = 25;
+        upperLeft = new GamePiece(0, 0, radius, 0);
+        gamePieceList.add(upperLeft);
+        upperMiddle = new GamePiece(getWidth()/2, 0, radius, 0);
+        gamePieceList.add(upperMiddle);
+        upperRight = new GamePiece(getWidth(), 0, radius, 0);
+        gamePieceList.add(upperRight);
+        middleLeft = new GamePiece(0, getHeight()/2, radius, 0);
+        gamePieceList.add(middleLeft);
+        middleRight = new GamePiece(getWidth(), getHeight()/2, radius, 0);
+        gamePieceList.add(middleRight);
+        center = new GamePiece(getWidth()/2, getHeight()/2, radius, 0);
+        innerLowerRight = new GamePiece((getWidth()-(getWidth()/4)), getHeight()/2 + getHeight()/4,
+                radius, 0);
+        gamePieceList.add(innerLowerRight);
+        lowerLeft = new GamePiece(getWidth(), getHeight(), radius, 0);
+        gamePieceList.add(lowerLeft);
+        lowerMiddle = new GamePiece(getWidth()/2, getHeight(), radius, 0);
+        gamePieceList.add(lowerMiddle);
+        lowerRight = new GamePiece(0, getHeight(), radius, 0);
+        gamePieceList.add(lowerRight);
+        innerTopLeft = new GamePiece((getWidth()/4), getHeight()/4, radius, 0);
+        gamePieceList.add(innerTopLeft);
+        innerTopMiddle = new GamePiece((getWidth()/2), getHeight()/4, radius, 0);
+        gamePieceList.add(innerTopMiddle);
+        innerTopRight = new GamePiece((getWidth() - (getWidth()/4)), getHeight()/4, radius, 0);
+        gamePieceList.add(innerTopRight);
+        innerMiddleLeft = new GamePiece(getWidth()/4, getHeight()/2, radius, 0);
+        gamePieceList.add(innerMiddleLeft);
+        innerMiddleRight = new GamePiece(getWidth() - (getWidth()/4), getHeight()/2, radius, 0);
+        gamePieceList.add(innerMiddleRight);
+        innerLowerLeft = new GamePiece((getWidth()/4), getHeight()/2 + getHeight()/4, radius, 0);
+        gamePieceList.add(innerLowerLeft);
+        innerLowerMiddle = new GamePiece((getWidth()/2), getHeight()/2 + getHeight()/4, radius, 0);
+        gamePieceList.add(innerLowerMiddle);
 
         if(isGameOver){
             isGameOver = false;
@@ -128,54 +141,16 @@ public class GameBoardView extends SurfaceView implements SurfaceHolder.Callback
     }
 
     private void gameStep(){
-        //x++;
+
     }
 
     public void updateView(Canvas canvas){
         if(canvas != null){
             canvas.drawRect(0, 0, canvas.getWidth(), canvas.getHeight(), backgroundPaint);
 
-            // Draw outside circles
-            upperLeft.draw(canvas);
-            upperMiddle.draw(canvas);
-            upperRight.draw(canvas);
-            middleLeft.draw(canvas);
-            middleRight.draw(canvas);
-            lowerRight.draw(canvas);
-            lowerMiddle.draw(canvas);
-            lowerLeft.draw(canvas);
-            innerTopLeft.draw(canvas);
-            innerTopMiddle.draw(canvas);
-            innerTopRight.draw(canvas);
-            innerMiddleLeft.draw(canvas);
-            innerMiddleRight.draw(canvas);
-            //canvas.drawCircle(x, y, radius, myPaint); // upper left
-            //canvas.drawCircle(getWidth()/2, 0, radius, myPaint); //upper middle
-            //canvas.drawCircle(getWidth(), 0, radius, myPaint); // upper right
-            //canvas.drawCircle(0, getHeight()/2, radius, myPaint ); // middle left
-            //canvas.drawCircle(getWidth(), getHeight()/2, radius, myPaint); //middle right
-            //canvas.drawCircle(0, getHeight(), radius, myPaint); //lower right
-            //canvas.drawCircle(getWidth()/2, getHeight(), radius, myPaint); //lower middle
-            //canvas.drawCircle(getWidth(), getHeight(), radius, myPaint); //lower left
-
-            //Draw center
-            //canvas.drawCircle(getWidth()/2, getHeight()/2, radius, myPaint); //center
-
-            //Draw inside circles
-            //canvas.drawCircle((getWidth()/4), getHeight()/4, radius, myPaint); //top left
-            //canvas.drawCircle((getWidth()/2), getHeight()/4, radius, myPaint); //top middle
-            //canvas.drawCircle((getWidth() - (getWidth()/4)), getHeight()/4, radius, myPaint); //top right
-            //canvas.drawCircle(getWidth()/2/2, getHeight()/2, radius, myPaint); //middle left
-            //canvas.drawCircle(getWidth() - (getWidth()/4), getHeight()/2, radius, myPaint); //middle right
-            //canvas.drawCircle((getWidth()/4), getHeight()/2 + getHeight()/4,
-                //radius, myPaint); //bottom left
-            //canvas.drawCircle((getWidth()/2), getHeight()/2 + getHeight()/4,
-                //radius, myPaint); //bottom middle
-            //canvas.drawCircle((getWidth()-(getWidth()/4)), getHeight()/2 + getHeight()/4,
-                //radius, myPaint); //bottom right
-            innerLowerRight.draw(canvas);
-            innerLowerMiddle.draw(canvas);
-            innerLowerLeft.draw(canvas);
+            for(GamePiece piece: gamePieceList){
+                piece.draw(canvas);
+            }
         }
     }
 
@@ -221,56 +196,26 @@ public class GameBoardView extends SurfaceView implements SurfaceHolder.Callback
 
     @Override
     public boolean onTouchEvent(MotionEvent e){
-       /* if(player1Turn){ //it is player 1's turn
-            if(){ //check outer corners
-              player1OuterCorners = player1OuterCorners + 1;
-            }else if(){ //check inner corners
-               player1InnerCorners = player1InnerCorners + 1;
-            }else if(){ //check down
-               player1Down = player1Down +1;
-            }else if(){ //check across
-                player1Across = player1Across + 1;
-            }else if(){ //check left diagonal
-                player1LeftDiagonal = player1LeftDiagonal + 1;
-            }else{ //check right diagonal
-                player1RightDiagonal = player1RightDiagonal + 1;
-            }
+        if(e.getAction() == MotionEvent.ACTION_DOWN){
+            int dx = (int) e.getX();
+            int dy = (int) e.getY();
 
-        }else{   //it is player 2's turn
-            if(){ //check outer corners
-              player2OuterCorners = player2OuterCorners + 1;
-            }else if(){ //check inner corners
-               player2InnerCorners = player2InnerCorners + 1;
-            }else if(){ //check down
-               player2Down = player2Down +1;
-            }else if(){ //check across
-                player2Across = player2Across + 1;
-            }else if(){ //check left diagonal
-                player2LeftDiagonal = player2LeftDiagonal + 1;
-            }else{ //check right diagonal
-                player2RightDiagonal = player2RightDiagonal + 1;
-            }
+            for(GamePiece piece: gamePieceList){
+                if(piece.contains(dx, dy)){
+                   if(player1Turn){
+                     piece.setOwner(1);
+                     player1Turn = false;
+                   }else{
+                     piece.setOwner(2);
+                     player1Turn = true;
+                   }
 
-         }
-    */
-        //if(e.getAction() == MotionEvent.ACTION_DOWN){
-            //this.x = (int) e.getX();
-            //this.y = (int) e.getY();
-        //}
+                }
+            }
+        }
         return true;
     }
 
-    public boolean onTouchEnd(MotionEvent e){
-        if(player1Turn){
-          Toast toast1 = Toast.makeText(getContext(), "Player 2's turn", Toast.LENGTH_SHORT);
-          toast1.show();
-        }else{
-          Toast toast2 = Toast.makeText(getContext(), "Player 1's turn", Toast.LENGTH_SHORT);
-          toast2.show();
-        }
-        player1Turn = !player1Turn;
-        return player1Turn;
-    }
 
     // Thread subclass to run the main game loop
     private class GameThread extends Thread{

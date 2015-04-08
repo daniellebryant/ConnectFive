@@ -14,14 +14,11 @@
     <string name="howToWinText">How to Win: Fill four circles, corners, diagonals,across, or up and
         down, to be able to fill the center circle</string>
     <string name="howToPlayText">How to Play: Click a circle to fill it with your color</string>
+    <string name="beginText">Player 1 will go first</string>
     <string-array name="color_list1">
-        <item>Red</item>
-        <item>Purple</item>
-        <item>Cyan</item>
+        <item>Magenta</item>
     </string-array>
     <string-array name="color_list2">
-        <item>Green</item>
-        <item>Blue</item>
-        <item>Yellow</item>
+        <item>Cyan</item>
     </string-array>
 </resources>

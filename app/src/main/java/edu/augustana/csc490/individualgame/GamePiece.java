@@ -20,18 +20,48 @@ public class GamePiece {
         this.radius = radius;
         this.playerOwner = playerOwner;
         myPaint = new Paint();
-        if (playerOwner == 0) {
-            myPaint.setColor(Color.BLACK);
-        }
     }
 
-    public void changeOwner(int newOwner) {
-        // change owner
-        // change color
-    }
 
     public void draw(Canvas canvas) {
         canvas.drawCircle(x, y, radius, myPaint);
     }
+
+    public int getX(){
+        return this.x;
+    }
+
+    public int getY(){
+        return this.y;
+    }
+
+    public int getOwner(){
+        return playerOwner;
+    }
+
+    public boolean contains(int touchX, int touchY){
+       int xDistance = touchX - x;
+       int yDistance = touchY - y;
+       double distance = Math.sqrt((xDistance*xDistance)+(yDistance*yDistance));
+       if(distance > radius){
+           return false;
+       }else{
+           return true;
+       }
+    }
+
+    public void setOwner(int owner){
+        if(owner==1){
+            myPaint.setColor(Color.MAGENTA);
+
+        }else if(owner==2){
+            myPaint.setColor(Color.CYAN);
+
+        }else{ // not owned game piece
+            myPaint.setColor(Color.BLACK);
+
+        }
+    }
+
 
 }

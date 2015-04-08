@@ -56,4 +56,14 @@
         android:layout_alignTop="@+id/player2TextView"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/beginText"
+        android:id="@+id/beginTextView"
+        android:layout_marginBottom="42dp"
+        android:layout_above="@+id/playButton"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>
