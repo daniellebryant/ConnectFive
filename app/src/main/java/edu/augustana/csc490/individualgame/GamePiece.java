@@ -50,15 +50,14 @@ public class GamePiece {
     }
 
     public void setOwner(int owner){
+        playerOwner = owner;
         if(owner==1){
             myPaint.setColor(Color.MAGENTA);
-
         }else if(owner==2){
             myPaint.setColor(Color.CYAN);
 
         }else{ // not owned game piece
             myPaint.setColor(Color.BLACK);
-
         }
     }
 

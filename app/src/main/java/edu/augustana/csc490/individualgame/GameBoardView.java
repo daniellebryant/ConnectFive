@@ -76,6 +76,7 @@ public class GameBoardView extends SurfaceView implements SurfaceHolder.Callback
     private int player2Across = 0;
     private int player2LeftDiagonal = 0;
     private int player2RightDiagonal = 0;
+    private int sum = 0;
 
 
 
@@ -237,98 +238,84 @@ public class GameBoardView extends SurfaceView implements SurfaceHolder.Callback
 
     @Override
     public boolean onTouchEvent(MotionEvent e){
-        if(e.getAction() == MotionEvent.ACTION_DOWN){
+        if(e.getAction() == MotionEvent.ACTION_DOWN) {
             int dx = (int) e.getX();
             int dy = (int) e.getY();
 
-            for(GamePiece piece: gamePieceList) {
+            for (GamePiece piece : gamePieceList) {
                 if (piece.contains(dx, dy)) {
-                    if (piece.getOwner() != 1 && piece.getOwner() != 2) {
+                    if (piece.getOwner() == 0) {
                         if (player1Turn) {
+                            if(outerCornerList.contains(piece)){
+                                if(leftDiagonalList.contains(piece)){
+                                    player1LeftDiagonal = player1LeftDiagonal + 1;
+                                }else{
+                                    player1RightDiagonal = player1RightDiagonal + 1;
+                                }
+                                player1OuterCorners = player1OuterCorners + 1;
+                                Log.i("outer p1", "yes" + player1OuterCorners);
+                            }else if(innerCornerList.contains(piece)){
+                                if(leftDiagonalList.contains(piece)){
+                                    player1LeftDiagonal = player1LeftDiagonal + 1;
+                                }else{
+                                    player1RightDiagonal = player1RightDiagonal + 1;
+                                }
+                                player1InnerCorners = player1InnerCorners + 1;
+                                Log.i("inner p1", "yes" + player1InnerCorners);
+                            }else if(upDownList.contains(piece)){
+                                player1Down = player1Down + 1;
+                                Log.i("down p1", "yes" + player1Down);
+                            }else if(leftDiagonalList.contains(piece)){
+                                player1LeftDiagonal = player1LeftDiagonal + 1;
+                                Log.i("left p1", "yes" + player1LeftDiagonal);
+                            }else if(rightDiagonalList.contains(piece)){
+                                player1RightDiagonal = player1RightDiagonal + 1;
+                                Log.i("right p1", "yes" + player1RightDiagonal);
+                            }else{
+                                player1Across = player1Across + 1;
+                                Log.i("across p1", "yes" + player1Across);
+                            }
+                            sum = sum + 1;
                             piece.setOwner(1);
                             player1Turn = false;
-
-                        } else {
-                             piece.setOwner(2);
-                             player1Turn = true;
-
+                         }else {
+                            if(outerCornerList.contains(piece)){
+                                if(leftDiagonalList.contains(piece)){
+                                    player2LeftDiagonal = player2LeftDiagonal + 1;
+                                }else{
+                                    player2RightDiagonal = player2RightDiagonal + 1;
+                                }
+                                player2OuterCorners = player2OuterCorners + 1;
+                                Log.i("outer p2", "yes" + player2OuterCorners);
+                            }else if(innerCornerList.contains(piece)){
+                                if(leftDiagonalList.contains(piece)){
+                                    player2LeftDiagonal = player2LeftDiagonal + 1;
+                                }else{
+                                    player2RightDiagonal = player2RightDiagonal + 1;
+                                }
+                                player2InnerCorners = player2InnerCorners + 1;
+                                Log.i("inner p2", "yes" + player2InnerCorners);
+                            }else if(upDownList.contains(piece)){
+                                player2Down = player2Down + 1;
+                                Log.i("down p2", "yes" + player2Down);
+                            //}else if(leftDiagonalList.contains(piece)){
+                                //player2LeftDiagonal = player2LeftDiagonal + 1;
+                                //Log.i("left p2", "yes"+player2LeftDiagonal);
+                           // }else if(rightDiagonalList.contains(piece)){
+                                //player2RightDiagonal = player2RightDiagonal + 1;
+                                //Log.i("right p2", "yes" + player2RightDiagonal);
+                            }else{
+                                player2Across = player2Across + 1;
+                                Log.i("across p2", "yes" + player2Across);
+                            }
+                            sum = sum + 1;
+                            piece.setOwner(2);
+                            player1Turn = true;
                         }
-                    }
+                   }
 
                 }
 
-            }
-
-            for(GamePiece piece: outerCornerList) {
-                if (piece.contains(dx, dy)) {
-                    if (player1Turn) {
-                        player1OuterCorners = player1OuterCorners + 1;
-                        Log.i("player1 outercorners", player1OuterCorners + "");
-                    } else {
-                        player2OuterCorners = player2OuterCorners + 1;
-                        Log.i("player2 outercorners", player2OuterCorners + "");
-                    }
-
-                }
-            }
-            for(GamePiece piece: innerCornerList) {
-                if (piece.contains(dx, dy)) {
-                        if (player1Turn) {
-                            player1InnerCorners = player1InnerCorners + 1;
-                            Log.i("player1 inner", player1InnerCorners + "");
-                        } else {
-                            player2InnerCorners = player2InnerCorners + 1;
-                            Log.i("player2 inner", player2InnerCorners + "");
-                        }
-                }
-            }
-            for(GamePiece piece: leftDiagonalList) {
-                if (piece.contains(dx, dy)) {
-                    if (player1Turn) {
-                        player1LeftDiagonal = player1LeftDiagonal + 1;
-                        Log.i("player1 left", player1LeftDiagonal + "");
-                    } else {
-                        player2LeftDiagonal = player2LeftDiagonal + 1;
-                        Log.i("player2 left", player2LeftDiagonal + "");
-                    }
-
-                }
-            }
-            for(GamePiece piece: rightDiagonalList) {
-                if (piece.contains(dx, dy)) {
-                    if (player1Turn) {
-                        player1RightDiagonal = player1RightDiagonal + 1;
-                        Log.i("player1 right", player1RightDiagonal + "");
-                    } else {
-                        player2RightDiagonal = player2RightDiagonal + 1;
-                        Log.i("player2 right", player2RightDiagonal + "");
-                    }
-
-                }
-            }
-            for(GamePiece piece: acrossList) {
-                if (piece.contains(dx, dy)) {
-                    if (player1Turn) {
-                        player1Across = player1Across + 1;
-                        Log.i("player1 across", player1Across + "");
-                    } else {
-                        player2Across = player2Across + 1;
-                        Log.i("player2 across", player2Across + "");
-                    }
-
-                }
-            }
-            for(GamePiece piece: upDownList) {
-                if (piece.contains(dx, dy)) {
-                    if (player1Turn) {
-                        player1Down = player1Down + 1;
-                        Log.i("player1 upDown", player1Down + "");
-                    } else {
-                        player2Down = player2Down + 1;
-                        Log.i("player2 upDown", player2Down + "");
-                    }
-
-                }
             }
 
         }
@@ -346,9 +333,14 @@ public class GameBoardView extends SurfaceView implements SurfaceHolder.Callback
                || player1OuterCorners == 4){ //counts for player1
                 Toast toast1 = Toast.makeText(getContext(), "Player 1 wins", Toast.LENGTH_SHORT);
                 toast1.show();
-                center.setOwner(2);
+                center.setOwner(1);
             }
         }
+        if(sum == 16){
+            Toast toast1 = Toast.makeText(getContext(), "Draw. Nobody Wins", Toast.LENGTH_SHORT);
+            toast1.show();
+        }
+
         return true;
     }
 
