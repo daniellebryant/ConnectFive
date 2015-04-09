@@ -50,8 +50,7 @@ public class GameOptionsActivity extends ActionBarActivity {
     AdapterView.OnItemSelectedListener spinner1 = new AdapterView.OnItemSelectedListener() {
         @Override
         public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-            String playerChoice1 = spinner1.toString();
-            Log.i("App", playerChoice1);
+
         }
 
         @Override
