@@ -22,7 +22,6 @@ public class GamePiece {
         myPaint = new Paint();
     }
 
-
     public void draw(Canvas canvas) {
         canvas.drawCircle(x, y, radius, myPaint);
     }

@@ -6,6 +6,7 @@ package edu.augustana.csc490.individualgame;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -104,65 +105,71 @@ public class GameBoardView extends SurfaceView implements SurfaceHolder.Callback
     }
 
     public void startNewGame(){
+        //Create outer square pieces
         upperLeft = new GamePiece(radius, radius, radius, 0);
-        gamePieceList.add(upperLeft);
         upperMiddle = new GamePiece(getWidth()/2, radius, radius, 0);
-        gamePieceList.add(upperMiddle);
         upperRight = new GamePiece(getWidth()-radius, radius, radius, 0);
-        gamePieceList.add(upperRight);
         middleLeft = new GamePiece(radius, getHeight()/2, radius, 0);
-        gamePieceList.add(middleLeft);
         middleRight = new GamePiece(getWidth()-radius, getHeight()/2, radius, 0);
-        gamePieceList.add(middleRight);
-        center = new GamePiece(getWidth()/2, getHeight()/2, radius, 0);
+        lowerLeft = new GamePiece(radius, getHeight()-radius, radius, 0);
+        lowerMiddle = new GamePiece(getWidth()/2, getHeight()-radius, radius, 0);
+        lowerRight = new GamePiece(getWidth()-radius, getHeight()-radius, radius, 0);
+
+        //Create inner square pieces
+        innerTopLeft = new GamePiece((getWidth()/4), getHeight()/4, radius, 0);
+        innerTopRight = new GamePiece((getWidth() - (getWidth()/4)), getHeight()/4, radius, 0);
+        innerTopMiddle = new GamePiece((getWidth()/2), getHeight()/4, radius, 0);
+        innerMiddleLeft = new GamePiece(getWidth()/4, getHeight()/2, radius, 0);
+        innerMiddleRight = new GamePiece(getWidth() - (getWidth()/4), getHeight()/2, radius, 0);
+        innerLowerLeft = new GamePiece((getWidth()/4), getHeight()/2 + getHeight()/4, radius, 0);
+        innerLowerMiddle = new GamePiece((getWidth()/2), getHeight()/2 + getHeight()/4, radius, 0);
         innerLowerRight = new GamePiece((getWidth()-(getWidth()/4)), getHeight()/2 + getHeight()/4,
                 radius, 0);
-        gamePieceList.add(innerLowerRight);
-        lowerLeft = new GamePiece(radius, getHeight()-radius, radius, 0);
-        gamePieceList.add(lowerLeft);
-        lowerMiddle = new GamePiece(getWidth()/2, getHeight()-radius, radius, 0);
-        gamePieceList.add(lowerMiddle);
-        lowerRight = new GamePiece(getWidth()-radius, getHeight()-radius, radius, 0);
-        gamePieceList.add(lowerRight);
-        innerTopLeft = new GamePiece((getWidth()/4), getHeight()/4, radius, 0);
-        gamePieceList.add(innerTopLeft);
-        innerTopMiddle = new GamePiece((getWidth()/2), getHeight()/4, radius, 0);
-        gamePieceList.add(innerTopMiddle);
-        innerTopRight = new GamePiece((getWidth() - (getWidth()/4)), getHeight()/4, radius, 0);
-        gamePieceList.add(innerTopRight);
-        innerMiddleLeft = new GamePiece(getWidth()/4, getHeight()/2, radius, 0);
-        gamePieceList.add(innerMiddleLeft);
-        innerMiddleRight = new GamePiece(getWidth() - (getWidth()/4), getHeight()/2, radius, 0);
-        gamePieceList.add(innerMiddleRight);
-        innerLowerLeft = new GamePiece((getWidth()/4), getHeight()/2 + getHeight()/4, radius, 0);
-        gamePieceList.add(innerLowerLeft);
-        innerLowerMiddle = new GamePiece((getWidth()/2), getHeight()/2 + getHeight()/4, radius, 0);
-        gamePieceList.add(innerLowerMiddle);
+
+        //Create center piece
         center = new GamePiece(getWidth()/2, getHeight()/2, radius, 0);
 
-
+        //Add outer square pieces to Lists
+        gamePieceList.add(upperLeft);
+        gamePieceList.add(upperMiddle);
+        gamePieceList.add(upperRight);
+        gamePieceList.add(middleLeft);
+        gamePieceList.add(middleRight);
+        gamePieceList.add(lowerLeft);
+        gamePieceList.add(lowerMiddle);
+        gamePieceList.add(lowerRight);
         outerCornerList.add(upperLeft);
         outerCornerList.add(upperRight);
         outerCornerList.add(lowerLeft);
         outerCornerList.add(lowerRight);
+        acrossList.add(middleLeft);
+        acrossList.add(middleRight);
+        upDownList.add(upperMiddle);
+        upDownList.add(lowerMiddle);
+        leftDiagonalList.add(upperLeft);
+        leftDiagonalList.add(lowerRight);
+        rightDiagonalList.add(upperRight);
+        rightDiagonalList.add(lowerLeft);
+
+        //Add inner square pieces to Lists
+        gamePieceList.add(innerLowerRight);
+        gamePieceList.add(innerTopLeft);
+        gamePieceList.add(innerTopMiddle);
+        gamePieceList.add(innerTopRight);
+        gamePieceList.add(innerMiddleLeft);
+        gamePieceList.add(innerMiddleRight);
+        gamePieceList.add(innerLowerLeft);
+        gamePieceList.add(innerLowerMiddle);
         innerCornerList.add(innerLowerLeft);
         innerCornerList.add(innerLowerRight);
         innerCornerList.add(innerTopLeft);
         innerCornerList.add(innerTopRight);
-        acrossList.add(middleLeft);
-        acrossList.add(middleRight);
         acrossList.add(innerMiddleLeft);
         acrossList.add(innerMiddleRight);
-        upDownList.add(upperMiddle);
-        upDownList.add(lowerMiddle);
         upDownList.add(innerTopMiddle);
         upDownList.add(innerLowerMiddle);
-        leftDiagonalList.add(upperLeft);
-        leftDiagonalList.add(lowerRight);
         leftDiagonalList.add(innerTopLeft);
         leftDiagonalList.add(innerLowerRight);
-        rightDiagonalList.add(upperRight);
-        rightDiagonalList.add(lowerLeft);
         rightDiagonalList.add(innerTopRight);
         rightDiagonalList.add(innerLowerLeft);
 
@@ -236,12 +243,16 @@ public class GameBoardView extends SurfaceView implements SurfaceHolder.Callback
 
             for(GamePiece piece: gamePieceList) {
                 if (piece.contains(dx, dy)) {
-                    if(player1Turn) {
-                        piece.setOwner(1);
-                        player1Turn = false;
-                    }else{
-                        piece.setOwner(2);
-                        player1Turn = true;
+                    if (piece.getOwner() != 1 && piece.getOwner() != 2) {
+                        if (player1Turn) {
+                            piece.setOwner(1);
+                            player1Turn = false;
+
+                        } else {
+                             piece.setOwner(2);
+                             player1Turn = true;
+
+                        }
                     }
 
                 }
@@ -252,36 +263,33 @@ public class GameBoardView extends SurfaceView implements SurfaceHolder.Callback
                 if (piece.contains(dx, dy)) {
                     if (player1Turn) {
                         player1OuterCorners = player1OuterCorners + 1;
-                        Log.i("App", player1OuterCorners + "");
+                        Log.i("player1 outercorners", player1OuterCorners + "");
                     } else {
                         player2OuterCorners = player2OuterCorners + 1;
-                        Log.i("App", player2OuterCorners + "");
+                        Log.i("player2 outercorners", player2OuterCorners + "");
                     }
 
                 }
             }
             for(GamePiece piece: innerCornerList) {
                 if (piece.contains(dx, dy)) {
-                    //if(piece.getOwner() == 0) {
                         if (player1Turn) {
                             player1InnerCorners = player1InnerCorners + 1;
-                            Log.i("App", player1InnerCorners + "");
+                            Log.i("player1 inner", player1InnerCorners + "");
                         } else {
                             player2InnerCorners = player2InnerCorners + 1;
-                            Log.i("App", player2InnerCorners + "");
+                            Log.i("player2 inner", player2InnerCorners + "");
                         }
-                    //}
-
                 }
             }
             for(GamePiece piece: leftDiagonalList) {
                 if (piece.contains(dx, dy)) {
                     if (player1Turn) {
                         player1LeftDiagonal = player1LeftDiagonal + 1;
-                        Log.i("App", player1LeftDiagonal + "");
+                        Log.i("player1 left", player1LeftDiagonal + "");
                     } else {
                         player2LeftDiagonal = player2LeftDiagonal + 1;
-                        Log.i("App", player2LeftDiagonal + "");
+                        Log.i("player2 left", player2LeftDiagonal + "");
                     }
 
                 }
@@ -290,10 +298,10 @@ public class GameBoardView extends SurfaceView implements SurfaceHolder.Callback
                 if (piece.contains(dx, dy)) {
                     if (player1Turn) {
                         player1RightDiagonal = player1RightDiagonal + 1;
-                        Log.i("App", player1RightDiagonal + "");
+                        Log.i("player1 right", player1RightDiagonal + "");
                     } else {
                         player2RightDiagonal = player2RightDiagonal + 1;
-                        Log.i("App", player2RightDiagonal + "");
+                        Log.i("player2 right", player2RightDiagonal + "");
                     }
 
                 }
@@ -302,10 +310,10 @@ public class GameBoardView extends SurfaceView implements SurfaceHolder.Callback
                 if (piece.contains(dx, dy)) {
                     if (player1Turn) {
                         player1Across = player1Across + 1;
-                        Log.i("App", player1Across + "");
+                        Log.i("player1 across", player1Across + "");
                     } else {
                         player2Across = player2Across + 1;
-                        Log.i("App", player2Across + "");
+                        Log.i("player2 across", player2Across + "");
                     }
 
                 }
@@ -314,10 +322,10 @@ public class GameBoardView extends SurfaceView implements SurfaceHolder.Callback
                 if (piece.contains(dx, dy)) {
                     if (player1Turn) {
                         player1Down = player1Down + 1;
-                        Log.i("App", player1Down + "");
+                        Log.i("player1 upDown", player1Down + "");
                     } else {
                         player2Down = player2Down + 1;
-                        Log.i("App", player2Down + "");
+                        Log.i("player2 upDown", player2Down + "");
                     }
 
                 }
@@ -331,8 +339,7 @@ public class GameBoardView extends SurfaceView implements SurfaceHolder.Callback
                 Toast toast1 = Toast.makeText(getContext(), "Player 2 wins", Toast.LENGTH_SHORT);
                 toast1.show();
                 center.setOwner(2);
-
-            }
+             }
         }else{ //false after player1 clicks
             if(player1Down == 4 || player1Across == 4 || player1RightDiagonal == 4
                || player1LeftDiagonal == 4 || player1InnerCorners == 4

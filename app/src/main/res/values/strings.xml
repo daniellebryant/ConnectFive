@@ -10,10 +10,10 @@
     <string name="title_activity_game_board">GameBoardActivity</string>
     <string name="player1Text">Player One:</string>
     <string name="player2Text">Player Two:</string>
-    <string name="objectiveText">Objective: Be the first player to fill the center circle</string>
-    <string name="howToWinText">How to Win: Fill four circles, corners, diagonals,across, or up and
-        down, to be able to fill the center circle</string>
-    <string name="howToPlayText">How to Play: Click a circle to fill it with your color</string>
+    <string name="objectiveText">Objective: Be the first player to own the center circle</string>
+    <string name="howToWinText">How to Win: Click four circles, corners, diagonals,across, or up and
+        down, to be able to own the center circle</string>
+    <string name="howToPlayText">How to Play: Click a circle to change it to your color</string>
     <string name="beginText">Player 1 will go first</string>
     <string-array name="color_list1">
         <item>Magenta</item>
@@ -21,4 +21,7 @@
     <string-array name="color_list2">
         <item>Cyan</item>
     </string-array>
+    <string name="title_activity_end_screen">EndScreenActivity</string>
+    <string name="playAgainText">Play again!</string>
+    <string name="gameOverText">Game over</string>
 </resources>
