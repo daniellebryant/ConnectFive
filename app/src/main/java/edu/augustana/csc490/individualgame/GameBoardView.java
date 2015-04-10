@@ -19,7 +19,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class GameBoardView extends SurfaceView implements SurfaceHolder.Callback{
+public class GameBoardView extends SurfaceView implements SurfaceHolder.Callback {
     private static final String TAG = "GameStarter";
 
     private GameThread gameThread; // runs the main game loop
@@ -62,7 +62,6 @@ public class GameBoardView extends SurfaceView implements SurfaceHolder.Callback
     private ArrayList<GamePiece> rightDiagonalList = new ArrayList<GamePiece>();
 
 
-
     private int player1OuterCorners = 0;
     private int player1InnerCorners = 0;
     private int player1Down = 0;
@@ -79,8 +78,7 @@ public class GameBoardView extends SurfaceView implements SurfaceHolder.Callback
     private int sum = 0;
 
 
-
-    public GameBoardView(Context context, AttributeSet atts){
+    public GameBoardView(Context context, AttributeSet atts) {
         super(context, atts);
         gameBoardActivity = (Activity) context;
 
@@ -95,8 +93,7 @@ public class GameBoardView extends SurfaceView implements SurfaceHolder.Callback
 
     // called when the size changes (and first time, when view is created)
     @Override
-    protected void onSizeChanged(int w, int h, int oldw, int oldh)
-    {
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
 
         screenWidth = w;
@@ -105,30 +102,30 @@ public class GameBoardView extends SurfaceView implements SurfaceHolder.Callback
         startNewGame();
     }
 
-    public void startNewGame(){
+    public void startNewGame() {
         //Create outer square pieces
         upperLeft = new GamePiece(radius, radius, radius, 0);
-        upperMiddle = new GamePiece(getWidth()/2, radius, radius, 0);
-        upperRight = new GamePiece(getWidth()-radius, radius, radius, 0);
-        middleLeft = new GamePiece(radius, getHeight()/2, radius, 0);
-        middleRight = new GamePiece(getWidth()-radius, getHeight()/2, radius, 0);
-        lowerLeft = new GamePiece(radius, getHeight()-radius, radius, 0);
-        lowerMiddle = new GamePiece(getWidth()/2, getHeight()-radius, radius, 0);
-        lowerRight = new GamePiece(getWidth()-radius, getHeight()-radius, radius, 0);
+        upperMiddle = new GamePiece(getWidth() / 2, radius, radius, 0);
+        upperRight = new GamePiece(getWidth() - radius, radius, radius, 0);
+        middleLeft = new GamePiece(radius, getHeight() / 2, radius, 0);
+        middleRight = new GamePiece(getWidth() - radius, getHeight() / 2, radius, 0);
+        lowerLeft = new GamePiece(radius, getHeight() - radius, radius, 0);
+        lowerMiddle = new GamePiece(getWidth() / 2, getHeight() - radius, radius, 0);
+        lowerRight = new GamePiece(getWidth() - radius, getHeight() - radius, radius, 0);
 
         //Create inner square pieces
-        innerTopLeft = new GamePiece((getWidth()/4), getHeight()/4, radius, 0);
-        innerTopRight = new GamePiece((getWidth() - (getWidth()/4)), getHeight()/4, radius, 0);
-        innerTopMiddle = new GamePiece((getWidth()/2), getHeight()/4, radius, 0);
-        innerMiddleLeft = new GamePiece(getWidth()/4, getHeight()/2, radius, 0);
-        innerMiddleRight = new GamePiece(getWidth() - (getWidth()/4), getHeight()/2, radius, 0);
-        innerLowerLeft = new GamePiece((getWidth()/4), getHeight()/2 + getHeight()/4, radius, 0);
-        innerLowerMiddle = new GamePiece((getWidth()/2), getHeight()/2 + getHeight()/4, radius, 0);
-        innerLowerRight = new GamePiece((getWidth()-(getWidth()/4)), getHeight()/2 + getHeight()/4,
+        innerTopLeft = new GamePiece((getWidth() / 4), getHeight() / 4, radius, 0);
+        innerTopRight = new GamePiece((getWidth() - (getWidth() / 4)), getHeight() / 4, radius, 0);
+        innerTopMiddle = new GamePiece((getWidth() / 2), getHeight() / 4, radius, 0);
+        innerMiddleLeft = new GamePiece(getWidth() / 4, getHeight() / 2, radius, 0);
+        innerMiddleRight = new GamePiece(getWidth() - (getWidth() / 4), getHeight() / 2, radius, 0);
+        innerLowerLeft = new GamePiece((getWidth() / 4), getHeight() / 2 + getHeight() / 4, radius, 0);
+        innerLowerMiddle = new GamePiece((getWidth() / 2), getHeight() / 2 + getHeight() / 4, radius, 0);
+        innerLowerRight = new GamePiece((getWidth() - (getWidth() / 4)), getHeight() / 2 + getHeight() / 4,
                 radius, 0);
 
         //Create center piece
-        center = new GamePiece(getWidth()/2, getHeight()/2, radius, 0);
+        center = new GamePiece(getWidth() / 2, getHeight() / 2, radius, 0);
 
         //Add outer square pieces to Lists
         gamePieceList.add(upperLeft);
@@ -174,14 +171,14 @@ public class GameBoardView extends SurfaceView implements SurfaceHolder.Callback
         rightDiagonalList.add(innerTopRight);
         rightDiagonalList.add(innerLowerLeft);
 
-        if(isGameOver){
+        if (isGameOver) {
             isGameOver = false;
             gameThread = new GameThread(getHolder());
             gameThread.start(); // start the main game loop going
         }
     }
 
-    private void gameStep(){
+     private void gameStep(){
 
     }
 
@@ -253,7 +250,6 @@ public class GameBoardView extends SurfaceView implements SurfaceHolder.Callback
                                     player1RightDiagonal = player1RightDiagonal + 1;
                                 }
                                 player1OuterCorners = player1OuterCorners + 1;
-                                Log.i("outer p1", "yes" + player1OuterCorners);
                             }else if(innerCornerList.contains(piece)){
                                 if(leftDiagonalList.contains(piece)){
                                     player1LeftDiagonal = player1LeftDiagonal + 1;
@@ -261,19 +257,10 @@ public class GameBoardView extends SurfaceView implements SurfaceHolder.Callback
                                     player1RightDiagonal = player1RightDiagonal + 1;
                                 }
                                 player1InnerCorners = player1InnerCorners + 1;
-                                Log.i("inner p1", "yes" + player1InnerCorners);
                             }else if(upDownList.contains(piece)){
                                 player1Down = player1Down + 1;
-                                Log.i("down p1", "yes" + player1Down);
-                            }else if(leftDiagonalList.contains(piece)){
-                                player1LeftDiagonal = player1LeftDiagonal + 1;
-                                Log.i("left p1", "yes" + player1LeftDiagonal);
-                            }else if(rightDiagonalList.contains(piece)){
-                                player1RightDiagonal = player1RightDiagonal + 1;
-                                Log.i("right p1", "yes" + player1RightDiagonal);
                             }else{
                                 player1Across = player1Across + 1;
-                                Log.i("across p1", "yes" + player1Across);
                             }
                             sum = sum + 1;
                             piece.setOwner(1);
@@ -286,7 +273,6 @@ public class GameBoardView extends SurfaceView implements SurfaceHolder.Callback
                                     player2RightDiagonal = player2RightDiagonal + 1;
                                 }
                                 player2OuterCorners = player2OuterCorners + 1;
-                                Log.i("outer p2", "yes" + player2OuterCorners);
                             }else if(innerCornerList.contains(piece)){
                                 if(leftDiagonalList.contains(piece)){
                                     player2LeftDiagonal = player2LeftDiagonal + 1;
@@ -294,19 +280,11 @@ public class GameBoardView extends SurfaceView implements SurfaceHolder.Callback
                                     player2RightDiagonal = player2RightDiagonal + 1;
                                 }
                                 player2InnerCorners = player2InnerCorners + 1;
-                                Log.i("inner p2", "yes" + player2InnerCorners);
+
                             }else if(upDownList.contains(piece)){
                                 player2Down = player2Down + 1;
-                                Log.i("down p2", "yes" + player2Down);
-                            //}else if(leftDiagonalList.contains(piece)){
-                                //player2LeftDiagonal = player2LeftDiagonal + 1;
-                                //Log.i("left p2", "yes"+player2LeftDiagonal);
-                           // }else if(rightDiagonalList.contains(piece)){
-                                //player2RightDiagonal = player2RightDiagonal + 1;
-                                //Log.i("right p2", "yes" + player2RightDiagonal);
                             }else{
                                 player2Across = player2Across + 1;
-                                Log.i("across p2", "yes" + player2Across);
                             }
                             sum = sum + 1;
                             piece.setOwner(2);
